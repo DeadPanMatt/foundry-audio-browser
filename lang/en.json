@@ -1,0 +1,6 @@
+{
+  "AUDIO_BROWSER.ButtonTitle": "Audio Browser",
+
+  "AUDIO_BROWSER.DefaultAudioPath": "Set your default audio browser path here",
+  "AUDIO_BROWSER.DefaultAudioPathHint": "This is the default path that will be shown when you open the audio browser."
+}

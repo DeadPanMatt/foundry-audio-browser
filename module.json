@@ -1,0 +1,36 @@
+{
+  "id": "audio-browser",
+  "title": "Audio Browser",
+  "description": "A module for browsing and managing audio files in Foundry VTT.",
+  "version": "0.0.2",
+  "authors": [
+    {
+      "name": "DeadPanMatt",
+      "url": "https://TheGMsCodex.com",
+      "Note": "The GM's Codex is still under construction, but you can find me on Discord at DeadPanMatt."
+    }
+  ],
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14",
+    "maximum": "14"
+  },
+  "esmodules": [
+    "scripts/module.js"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "readme": "",
+  "bugs": "",
+  "changelog": "",
+  "license": "MIT"
+}
