@@ -16,7 +16,7 @@
     "maximum": "14"
   },
   "esmodules": [
-    "scripts/module.js"
+    "scripts/main.js"
   ],
   "languages": [
     {
