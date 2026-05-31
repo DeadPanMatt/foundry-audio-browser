@@ -37,11 +37,20 @@ Install the module using Foundry's standard module installation process and enab
 
 ### Uploading Audio Files
 
+#### Option 1
+
 1. Open the Audio Browser.
 2. Navigate to the desired folder.
 3. Click the **Upload** button.
 4. Select your audio file(s).
 5. Once uploaded, the files will be available for use throughout Foundry.
+
+#### Option 2
+
+1. Open the Bulk Upload Audio menu.
+2. Select eitehr of the two options (depending on your default folder).
+3. Select the files you wish to upload.
+4. wait until progress has completed.
 
 ---
 
@@ -53,12 +62,6 @@ Install the module using Foundry's standard module installation process and enab
 4. Locate **Audio Browser**.
 5. Enter the folder path you would like the browser to open by default.
 6. Save your changes.
-
----
-
-## Compatibility
-
-- Foundry Virtual Tabletop V13+
 
 ---
 

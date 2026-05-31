@@ -1,6 +1,16 @@
 {
-  "AUDIO_BROWSER.ButtonTitle": "Audio Browser",
-
-  "AUDIO_BROWSER.DefaultAudioPath": "Set your default audio browser path here",
-  "AUDIO_BROWSER.DefaultAudioPathHint": "This is the default path that will be shown when you open the audio browser."
+ "AUDIO_BROWSER.ButtonTitle": "Audio Browser",
+  "AUDIO_BROWSER.DefaultAudioPath": "Default Audio Folder",
+  "AUDIO_BROWSER.DefaultAudioPathHint": "The folder opened when the Audio Browser is launched.",
+  "AUDIO_BROWSER.ChooseDefaultAudioPath": "Set Default Audio Folder",
+  "AUDIO_BROWSER.ChooseDefaultAudioPathButton": "Choose Folder",
+  "AUDIO_BROWSER.ChooseDefaultAudioPathHint": "Select a folder to set as the default audio folder. This folder will be opened when you launch the Audio Browser.",
+  "AUDIO_BROWSER.DefaultFolderSet": "Audio Browser default folder set to: {folder}",
+  "AUDIO_BROWSER.BulkUploadTitle": "Bulk Upload Audio",
+  "AUDIO_BROWSER.BulkUploadDone": "Uploaded {count} file(s) to {folder}",
+  "AUDIO_BROWSER.BulkUploadPromptPrefix": "Upload files to the default audio folder (",
+  "AUDIO_BROWSER.BulkUploadPromptSuffix": ") or choose a different target folder?",
+  "AUDIO_BROWSER.BulkUploadUseDefault": "Upload to Default",
+  "AUDIO_BROWSER.BulkUploadChooseTarget": "Choose Target...",
+  "AUDIO_BROWSER.BulkUploadProgress": "Uploading audio: {done} / {total}"
 }

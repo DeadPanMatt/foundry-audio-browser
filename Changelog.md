@@ -2,6 +2,13 @@
 
 ---
 
+## v1.0.0
+
+-Bulk uplaod button added to Ambient Sounds Menu.
+-Progress bar added to track bulk uploads.
+
+---
+
 ## v0.0.2
 
 -Module set to be only visable to he GM.
