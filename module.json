@@ -16,7 +16,8 @@
     "maximum": "14"
   },
   "esmodules": [
-    "scripts/main.js"
+    "scripts/main.js",
+    "scripts/folder-picker.js"
   ],
   "languages": [
     {

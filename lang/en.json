@@ -12,5 +12,6 @@
   "AUDIO_BROWSER.BulkUploadPromptSuffix": ") or choose a different target folder?",
   "AUDIO_BROWSER.BulkUploadUseDefault": "Upload to Default",
   "AUDIO_BROWSER.BulkUploadChooseTarget": "Choose Target...",
-  "AUDIO_BROWSER.BulkUploadProgress": "Uploading audio: {done} / {total}"
+  "AUDIO_BROWSER.BulkUploadProgress": "Uploading audio: {done} / {total}",
+  "AUDIO_BROWSER.UseThisFolder": "Use This Folder"
 }

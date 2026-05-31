@@ -1,7 +1,15 @@
+import { openFolderPicker } from "./folder-picker.js";
+
 export const MODULE_ID = "audio-browser";
 
 export function log(...args) {
   console.log(`${MODULE_ID} |`, ...args);
+}
+
+function getDefaultAudioLocation() {
+  const raw = game.settings.get(MODULE_ID, "defaultAudioPath");
+  if (typeof raw === "string") return { source: "data", path: raw };
+  return { source: raw?.source ?? "data", path: raw?.path ?? "sounds" };
 }
 
 Hooks.once("init", () => {
@@ -12,8 +20,8 @@ Hooks.once("init", () => {
     hint: "AUDIO_BROWSER.DefaultAudioPathHint",
     scope: "world",
     config: false,
-    type: String,
-    default: "sounds"
+    type: Object,
+    default: { source: "data", path: "sounds" }
   });
 
   game.settings.registerMenu(MODULE_ID, "chooseDefaultAudioPath", {
@@ -50,13 +58,17 @@ Hooks.on("getSceneControlButtons", controls => {
 });
 
 function openAudioBrowser() {
-  const defaultPath = game.settings.get(MODULE_ID, "defaultAudioPath");
-  log("Opening audio browser with default path:", defaultPath);
+  const { source, path } = getDefaultAudioLocation();
+  log("Opening audio browser:", { source, path });
 
-  new foundry.applications.apps.FilePicker({
+  const picker = new foundry.applications.apps.FilePicker.implementation({
     type: "audio",
-    current: defaultPath
-  }).render(true);
+    current: path
+  });
+  if (source && source !== "data") {
+    try { picker.activeSource = source; } catch (err) { log("Could not set activeSource", err); }
+  }
+  picker.render(true);
 }
 
 class ChooseDefaultAudioPath extends foundry.applications.api.ApplicationV2 {
@@ -70,27 +82,26 @@ class ChooseDefaultAudioPath extends foundry.applications.api.ApplicationV2 {
 }
 
 function chooseDefaultAudioPath() {
-  const currentPath = game.settings.get(MODULE_ID, "defaultAudioPath");
+  const { source, path } = getDefaultAudioLocation();
 
-  new foundry.applications.apps.FilePicker({
-    type: "audio",
-    current: currentPath,
-    callback: async path => {
-      const folder = path.split("/").slice(0, -1).join("/");
-      await game.settings.set(MODULE_ID, "defaultAudioPath", folder);
+  openFolderPicker({
+    source,
+    current: path,
+    callback: async ({ source: newSource, folder }) => {
+      await game.settings.set(MODULE_ID, "defaultAudioPath", { source: newSource, path: folder });
       ui.notifications.info(game.i18n.format("AUDIO_BROWSER.DefaultFolderSet", { folder }));
-      log("Default audio path updated:", folder);
+      log("Default audio location updated:", { source: newSource, folder });
     }
-  }).render(true);
+  });
 }
 
 function openBulkUpload() {
-  const defaultFolder = game.settings.get(MODULE_ID, "defaultAudioPath");
+  const defaultLocation = getDefaultAudioLocation();
 
   const content = document.createElement("p");
   content.append(game.i18n.localize("AUDIO_BROWSER.BulkUploadPromptPrefix") + " ");
   const folderEl = document.createElement("strong");
-  folderEl.textContent = defaultFolder;
+  folderEl.textContent = defaultLocation.path;
   content.append(folderEl);
   content.append(" " + game.i18n.localize("AUDIO_BROWSER.BulkUploadPromptSuffix"));
 
@@ -102,29 +113,26 @@ function openBulkUpload() {
         action: "default",
         label: game.i18n.localize("AUDIO_BROWSER.BulkUploadUseDefault"),
         default: true,
-        callback: () => pickAndUploadFiles(defaultFolder)
+        callback: () => pickAndUploadFiles(defaultLocation.source, defaultLocation.path)
       },
       {
         action: "choose",
         label: game.i18n.localize("AUDIO_BROWSER.BulkUploadChooseTarget"),
-        callback: () => chooseTargetThenUpload(defaultFolder)
+        callback: () => chooseTargetThenUpload(defaultLocation)
       }
     ]
   });
 }
 
-function chooseTargetThenUpload(startFolder) {
-  new foundry.applications.apps.FilePicker({
-    type: "audio",
-    current: startFolder,
-    callback: path => {
-      const folder = path.split("/").slice(0, -1).join("/");
-      pickAndUploadFiles(folder);
-    }
-  }).render(true);
+function chooseTargetThenUpload(start) {
+  openFolderPicker({
+    source: start.source,
+    current: start.path,
+    callback: ({ source, folder }) => pickAndUploadFiles(source, folder)
+  });
 }
 
-function pickAndUploadFiles(folder) {
+function pickAndUploadFiles(source, folder) {
   const input = document.createElement("input");
   input.type = "file";
   input.multiple = true;
@@ -144,7 +152,7 @@ function pickAndUploadFiles(folder) {
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       try {
-        await foundry.applications.apps.FilePicker.upload("data", folder, file, {}, { notify: false });
+        await foundry.applications.apps.FilePicker.implementation.upload(source, folder, file, {}, { notify: false });
         success++;
       } catch (err) {
         console.error(`${MODULE_ID} | Failed to upload ${file.name}`, err);
