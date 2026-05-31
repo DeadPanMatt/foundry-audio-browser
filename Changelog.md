@@ -1,5 +1,9 @@
 # All chnages made to the Audio Browser will be listed here
 
+## v1.0.1
+
+-Fixeed an issue where, for Forge users, the **Bazar** and **Forge Assets** tabs were not availible in the file pickers.
+
 ---
 
 ## v1.0.0

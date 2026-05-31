@@ -2,7 +2,7 @@
   "id": "audio-browser",
   "title": "Audio Browser",
   "description": "A module for browsing and managing audio files in Foundry VTT.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "DeadPanMatt",
@@ -30,7 +30,7 @@
   "socket": true,
   "url": "https://github.com/DeadPanMatt/foundry-audio-browser",
   "manifest": "https://raw.githubusercontent.com/DeadPanMatt/foundry-audio-browser/main/module.json",
-  "download": "https://github.com/DeadPanMatt/foundry-audio-browser/archive/refs/tags/v1.0.0.zip",
+  "download": "https://github.com/DeadPanMatt/foundry-audio-browser/archive/refs/tags/v1.0.1.zip",
   "readme": "https://raw.githubusercontent.com/DeadPanMatt/foundry-audio-browser/main/README.md",
   "changelog": "https://raw.githubusercontent.com/DeadPanMatt/foundry-audio-browser/main/CHANGELOG.md",
   "bugs": "https://github.com/DeadPanMatt/foundry-audio-browser/issues",
