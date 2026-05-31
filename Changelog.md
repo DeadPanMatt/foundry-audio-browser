@@ -4,7 +4,7 @@
 
 ## v1.0.0
 
--Bulk uplaod button added to Ambient Sounds Menu.
+-Bulk upload button added to Ambient Sounds Menu.
 -Progress bar added to track bulk uploads.
 
 ---

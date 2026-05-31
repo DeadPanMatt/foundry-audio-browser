@@ -57,10 +57,10 @@ Install the module using Foundry's standard module installation process and enab
 ### Setting a Default Audio Folder
 
 1. Open **Game Settings**.
-2. Select **Configure Settings**.
-3. Open the **Module Settings** tab.
-4. Locate **Audio Browser**.
-5. Enter the folder path you would like the browser to open by default.
+2. Select the module fro the left pane
+3. Click **Choose Folder**
+4. Navigate to the desired directory
+5. Click on any File in that directory (don't worrry the file name will be stripped fro he default directory path)
 6. Save your changes.
 
 ---

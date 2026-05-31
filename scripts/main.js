@@ -73,9 +73,10 @@ function chooseDefaultAudioPath() {
   const currentPath = game.settings.get(MODULE_ID, "defaultAudioPath");
 
   new foundry.applications.apps.FilePicker({
-    type: "folder",
+    type: "audio",
     current: currentPath,
-    callback: async folder => {
+    callback: async path => {
+      const folder = path.split("/").slice(0, -1).join("/");
       await game.settings.set(MODULE_ID, "defaultAudioPath", folder);
       ui.notifications.info(game.i18n.format("AUDIO_BROWSER.DefaultFolderSet", { folder }));
       log("Default audio path updated:", folder);
@@ -114,9 +115,12 @@ function openBulkUpload() {
 
 function chooseTargetThenUpload(startFolder) {
   new foundry.applications.apps.FilePicker({
-    type: "folder",
+    type: "audio",
     current: startFolder,
-    callback: folder => pickAndUploadFiles(folder)
+    callback: path => {
+      const folder = path.split("/").slice(0, -1).join("/");
+      pickAndUploadFiles(folder);
+    }
   }).render(true);
 }
 
